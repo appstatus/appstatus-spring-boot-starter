@@ -1,0 +1,1 @@
+# appstatus-spring-boot-starter
