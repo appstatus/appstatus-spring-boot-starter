@@ -20,14 +20,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.AnnotationAttributes;
 
+import net.sf.appstatus.boot.core.AbstractAppstatusImportAware;
+import net.sf.appstatus.boot.core.AppstatusConfigBuilder;
 import net.sf.appstatus.core.AppStatus;
 import net.sf.appstatus.core.check.ICheck;
 import net.sf.appstatus.core.property.IPropertyProvider;
 import net.sf.appstatus.support.spring.SpringObjectInstantiationListener;
+import net.sf.appstatus.web.IPage;
 
 /**
  * AppStatus web configuration.
@@ -38,27 +43,45 @@ import net.sf.appstatus.support.spring.SpringObjectInstantiationListener;
 @Configuration
 @ComponentScan({ "net.sf.appstatus.boot.web.checker", "net.sf.appstatus.boot.web.provider" })
 @ServletComponentScan("net.sf.appstatus.boot.web")
-public class AppStatusConfig {
+public class AppStatusConfig extends AbstractAppstatusImportAware {
+
+    /** Servlet urlMappings. */
+    private String[] urlMappings;
 
     /** Checkers. */
-    @Autowired
+    @Autowired(required = false)
     private List<ICheck> checkers;
 
     /** PropertyProviders. */
-    @Autowired
+    @Autowired(required = false)
     private List<IPropertyProvider> propertyProviders;
+
+    /** Custom pages. */
+    @Autowired(required = false)
+    private List<IPage> customPages;
+
+    public AppStatusConfig() {
+        super(EnableAppStatus.class);
+    }
 
     /**
      * Create AppStatus bean.
      * 
      * @return AppStatus bean
      */
-    @Bean(name = "appstatus", initMethod = "init")
+    @Bean(name = AppStatusWebConstants.BEAN_NAME, initMethod = "init")
     public AppStatus appstatus() {
         return new AppStatusBuilder().checkers(checkers)
                                      .propertyProviders(propertyProviders)
                                      .objectInstanciationListener(listener())
                                      .build();
+    }
+
+    @Bean
+    public ServletRegistrationBean appstatusServletRegistration() {
+        return new AppStatusServletBuilder().urlMappings(urlMappings)
+                                            .customPages(customPages)
+                                            .servletRegistrationBean();
     }
 
     /**
@@ -69,6 +92,18 @@ public class AppStatusConfig {
     @Bean
     public SpringObjectInstantiationListener listener() {
         return new SpringObjectInstantiationListener();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see net.sf.appstatus.boot.core.AbstractAppstatusImportAware#initialize(org.
+     * springframework.core.annotation.AnnotationAttributes,
+     * net.sf.appstatus.boot.core.AppstatusConfigBuilder)
+     */
+    @Override
+    protected void initialize(AnnotationAttributes attributes, AppstatusConfigBuilder configBuilder) {
+        this.urlMappings = attributes.getStringArray("urlMappings");
     }
 
 }

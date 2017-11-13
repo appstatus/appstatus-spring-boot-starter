@@ -16,19 +16,22 @@
 */
 package net.sf.appstatus.boot.web;
 
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-
-import net.sf.appstatus.web.StatusServlet;
-
 /**
- * AppStatus servlet. URL pattern '/status', not configurable for now.
+ * Constants for AppStatusWeb.
  * 
  * @author Franck Stephanovitch
  *
  */
-@WebServlet(value = "/status", initParams = @WebInitParam(name = "bean", value = "appstatus"))
-public class AppStatusServlet extends StatusServlet {
-    private static final long serialVersionUID = 1L;
+public final class AppStatusWebConstants {
+
+    /** Default servlet urlMappings. */
+    public static final String DEFAULT_URL_MAPPINGS = "/status";
+
+    /** AppStatus bean name. */
+    public static final String BEAN_NAME = "appstatus";
+
+    private AppStatusWebConstants() {
+        // Nothing to do.
+    }
 
 }

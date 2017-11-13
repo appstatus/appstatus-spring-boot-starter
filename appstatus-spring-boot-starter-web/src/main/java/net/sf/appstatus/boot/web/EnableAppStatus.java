@@ -23,6 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.springframework.context.annotation.Import;
+import org.springframework.core.annotation.AliasFor;
 
 /**
  * EnabledAppStatus web starter.
@@ -35,5 +36,21 @@ import org.springframework.context.annotation.Import;
 @Documented
 @Import(AppStatusConfig.class)
 public @interface EnableAppStatus {
+
+    /**
+     * Servlet urlMappings.
+     * 
+     * @return String[] urlMappings
+     */
+    @AliasFor("urlMappings")
+    String[] value() default AppStatusWebConstants.DEFAULT_URL_MAPPINGS;
+
+    /**
+     * Servlet urlMappings.
+     * 
+     * @return String[] urlMappings
+     */
+    @AliasFor("value")
+    String[] urlMappings() default AppStatusWebConstants.DEFAULT_URL_MAPPINGS;
 
 }
