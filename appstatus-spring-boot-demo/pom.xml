@@ -5,7 +5,7 @@
     <parent>
         <groupId>net.sf.appstatus</groupId>
         <artifactId>appstatus-spring-boot-starter</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>appstatus-spring-boot-demo</artifactId>
@@ -63,27 +63,27 @@
         <dependency>
             <groupId>net.sf.appstatus</groupId>
             <artifactId>appstatus-spring-boot-starter-web</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>net.sf.appstatus</groupId>
             <artifactId>appstatus-spring-boot-starter-logback</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>net.sf.appstatus</groupId>
             <artifactId>appstatus-spring-boot-starter-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>net.sf.appstatus</groupId>
             <artifactId>appstatus-spring-boot-starter-batch</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>net.sf.appstatus</groupId>
             <artifactId>appstatus-spring-boot-starter-jcache</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>

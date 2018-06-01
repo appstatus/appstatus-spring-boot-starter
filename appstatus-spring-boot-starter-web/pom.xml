@@ -4,7 +4,7 @@
     <parent>
         <groupId>net.sf.appstatus</groupId>
         <artifactId>appstatus-spring-boot-starter</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>appstatus-spring-boot-starter-web</artifactId>
@@ -14,7 +14,7 @@
         <dependency>
             <groupId>net.sf.appstatus</groupId>
             <artifactId>appstatus-spring-boot-starter-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>net.sf.appstatus</groupId>
